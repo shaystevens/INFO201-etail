@@ -1,0 +1,11 @@
+
+.gradle
+.classpath
+.project
+build
+bin
+dist
+*.zip
+*.tgz
+*.class
+.DS_Store
