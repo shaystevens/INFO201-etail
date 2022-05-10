@@ -4,6 +4,8 @@
  */
 package domain;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author shaystevens
