@@ -43,6 +43,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         buttonViewProduct.setText("View Products");
+        buttonViewProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonViewProductActionPerformed(evt);
+            }
+        });
 
         buttonExit.setText("Exit");
         buttonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +97,13 @@ public class MainMenu extends javax.swing.JFrame {
         productEditor.setLocationRelativeTo(this);
         productEditor.setVisible(true);
     }//GEN-LAST:event_buttonAddProductActionPerformed
+
+    private void buttonViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewProductActionPerformed
+        //When button is clicked load ProductViewer dialog
+        ProductViewer productViewer = new ProductViewer(this, true);
+        productViewer.setLocationRelativeTo(this);
+        productViewer.setVisible(true);
+    }//GEN-LAST:event_buttonViewProductActionPerformed
 
     /**
      * @param args the command line arguments
