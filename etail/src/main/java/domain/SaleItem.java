@@ -13,6 +13,15 @@ import java.math.BigDecimal;
 public class SaleItem {
     private BigDecimal quantityPurchased;
     private BigDecimal salePrice;
+    private Product product;
+    
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
     
     public BigDecimal getItemTotal(){
         BigDecimal total = salePrice.multiply(quantityPurchased);
