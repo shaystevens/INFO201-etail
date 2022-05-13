@@ -6,7 +6,9 @@ package gui;
 
 import dao.ProductCollectionsDAO;
 import domain.Product;
+import helpers.SimpleListModel;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 /**
  *
@@ -41,6 +43,10 @@ public class ProductEditor extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        SimpleListModel categoryModel = new SimpleListModel();
+        ProductCollectionsDAO categoryDao = new ProductCollectionsDAO();
+        Collection<String> categories = categoryDao.getCategories();
+        categoryModel.updateItems(categories);
         boxCategory = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
@@ -69,7 +75,7 @@ public class ProductEditor extends javax.swing.JDialog {
 
         jLabel4.setText("Category:");
 
-        boxCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxCategory.setModel(categoryModel);
         boxCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxCategoryActionPerformed(evt);
