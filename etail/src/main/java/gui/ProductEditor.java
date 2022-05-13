@@ -4,6 +4,7 @@
  */
 package gui;
 
+import dao.ProductCollectionsDAO;
 import domain.Product;
 import java.math.BigDecimal;
 
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
  * @author shaystevens
  */
 public class ProductEditor extends javax.swing.JDialog {
+    private ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
 
     /**
      * Creates new form ProductEditor
@@ -192,7 +194,8 @@ public class ProductEditor extends javax.swing.JDialog {
         product.setListPrice(priceBigDecimal);
         product.setQuantityInStock(quantityBigDecimal);
         
-        System.out.println(product);
+        productDAO.saveProduct(product);
+        dispose();
         
     }//GEN-LAST:event_buttonSaveActionPerformed
 
