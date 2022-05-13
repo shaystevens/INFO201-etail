@@ -54,13 +54,16 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Product Administration"/>
+        <Property name="text" type="java.lang.String" value="                                  Product Administration"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonAddProduct">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add a New Product"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAddProductActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonViewProduct">
       <Properties>
@@ -71,6 +74,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonExitActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

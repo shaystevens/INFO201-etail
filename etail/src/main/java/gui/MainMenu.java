@@ -33,13 +33,23 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Product Administration");
+        jLabel1.setText("                                  Product Administration");
 
         buttonAddProduct.setText("Add a New Product");
+        buttonAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddProductActionPerformed(evt);
+            }
+        });
 
         buttonViewProduct.setText("View Products");
 
         buttonExit.setText("Exit");
+        buttonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,6 +80,18 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_buttonExitActionPerformed
+
+    private void buttonAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddProductActionPerformed
+        // When button is clicked load ProductEditor dialog
+        ProductEditor productEditor = new ProductEditor(this, true);
+        productEditor.setLocationRelativeTo(this);
+        productEditor.setVisible(true);
+    }//GEN-LAST:event_buttonAddProductActionPerformed
 
     /**
      * @param args the command line arguments
