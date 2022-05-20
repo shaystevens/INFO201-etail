@@ -14,7 +14,10 @@ import java.util.Collection;
  * @author shaystevens
  */
 public class ProductViewer extends javax.swing.JDialog {
-
+    ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
+    SimpleListModel productsModel = new SimpleListModel();
+    Collection<Product> products = productDAO.getProducts();
+    
     /**
      * Creates new form ProductViewer
      */
@@ -32,6 +35,7 @@ public class ProductViewer extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        optionPane = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         IDSearchTxtBox = new javax.swing.JTextField();
@@ -39,9 +43,6 @@ public class ProductViewer extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         categoryFilterComboBox = new javax.swing.JComboBox<>();
         productScrollPane = new javax.swing.JScrollPane();
-        ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
-        SimpleListModel productsModel = new SimpleListModel();
-        Collection<Product> products = productDAO.getProducts();
         productsModel.updateItems(products);
         productList = new javax.swing.JList<>();
         editButton = new javax.swing.JButton();
@@ -82,6 +83,11 @@ public class ProductViewer extends javax.swing.JDialog {
         });
 
         deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         closeButton.setText("Close");
         closeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +174,19 @@ public class ProductViewer extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        if(!productList.isSelectionEmpty()){
+            int result = optionPane.showConfirmDialog(this, "Do you want to remove this product?", "Delete Item", optionPane.YES_NO_OPTION);
+
+            if (result == optionPane.YES_OPTION) {
+                Product productToDelete = (Product)productList.getSelectedValue();
+                productDAO.removeProduct(productToDelete);
+                productsModel.updateItems(products);
+            }
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,7 +239,8 @@ public class ProductViewer extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> productList;
+    private javax.swing.JOptionPane optionPane;
+    private javax.swing.JList<Product> productList;
     private javax.swing.JScrollPane productScrollPane;
     // End of variables declaration//GEN-END:variables
 }
