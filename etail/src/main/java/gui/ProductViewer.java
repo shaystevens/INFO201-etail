@@ -16,7 +16,10 @@ import java.util.Collection;
 public class ProductViewer extends javax.swing.JDialog {
     ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
     SimpleListModel productsModel = new SimpleListModel();
+    SimpleListModel categoryModel = new SimpleListModel();
     Collection<Product> products = productDAO.getProducts();
+    Collection<String> categories = productDAO.getCategories();
+    
     
     /**
      * Creates new form ProductViewer
@@ -41,6 +44,7 @@ public class ProductViewer extends javax.swing.JDialog {
         IDSearchTxtBox = new javax.swing.JTextField();
         SearchButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        categoryModel.updateItems(categories);
         categoryFilterComboBox = new javax.swing.JComboBox<>();
         productScrollPane = new javax.swing.JScrollPane();
         productsModel.updateItems(products);
@@ -62,10 +66,15 @@ public class ProductViewer extends javax.swing.JDialog {
         });
 
         SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Category Filter:");
 
-        categoryFilterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryFilterComboBox.setModel(categoryModel);
         categoryFilterComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryFilterComboBoxActionPerformed(evt);
@@ -186,6 +195,13 @@ public class ProductViewer extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+        // TODO add your handling code here:
+        String id = IDSearchTxtBox.getText();
+        Product searchedProduct = productDAO.searchById(id);
+        productsModel.updateItems(searchedProduct);
+    }//GEN-LAST:event_SearchButtonActionPerformed
 
     /**
      * @param args the command line arguments

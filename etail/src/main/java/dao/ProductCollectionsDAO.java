@@ -5,6 +5,7 @@
 package dao;
 
 import domain.Product;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -15,10 +16,26 @@ import java.util.HashSet;
 public class ProductCollectionsDAO {
     private static Collection<Product> products = new HashSet<>();
     private static Collection<String> categories = new HashSet<>();
+    private static Collection<String> productIDs = new HashSet<>();
+
+    public static Collection<String> getProductIDs() {
+        return productIDs;
+    }
     
     public void saveProduct(Product product){
         products.add(product);
         categories.add(product.getCategory());
+        productIDs.add(product.getProductID());
+    }
+    
+    public Product searchById(String id){
+        if(productIDs.contains(id)){
+            ArrayList<String> stringIDs = new ArrayList<>(productIDs);
+            int index = stringIDs.indexOf(id);
+            ArrayList<Product> productsArray = new ArrayList<>(products);
+            return productsArray.get(index);
+        }
+        return null;
     }
     
     public Collection<Product> getProducts(){
