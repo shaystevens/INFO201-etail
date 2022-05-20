@@ -5,16 +5,16 @@
 package dao;
 
 import domain.Product;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  *
  * @author shaystevens
  */
 public class ProductCollectionsDAO {
-    private static Collection<Product> products = new ArrayList<>();
-    private static Collection<String> categories = new ArrayList<>();
+    private static Collection<Product> products = new HashSet<>();
+    private static Collection<String> categories = new HashSet<>();
     
     public void saveProduct(Product product){
         products.add(product);
