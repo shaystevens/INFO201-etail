@@ -30,10 +30,13 @@ public class ProductCollectionsDAO {
     
     public Product searchById(String id){
         if(productIDs.contains(id)){
-            ArrayList<String> stringIDs = new ArrayList<>(productIDs);
-            int index = stringIDs.indexOf(id);
             ArrayList<Product> productsArray = new ArrayList<>(products);
-            return productsArray.get(index);
+            for(int x = 0; x < productsArray.size(); x++){
+                Product compareProduct = productsArray.get(x);
+                if(compareProduct.getProductID().equals(id)){
+                    return productsArray.get(x);
+                }  
+            }
         }
         return null;
     }
