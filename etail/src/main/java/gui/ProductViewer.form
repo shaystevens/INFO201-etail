@@ -28,23 +28,6 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="72" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="editButton" min="-2" pref="86" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="deleteButton" min="-2" pref="92" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="closeButton" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -60,6 +43,23 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="editButton" min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="deleteButton" min="-2" pref="92" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="closeButton" min="-2" pref="94" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,7 +90,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="   View Products"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="View Products"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
