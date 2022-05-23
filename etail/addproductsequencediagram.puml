@@ -1,0 +1,51 @@
+@startuml add product
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+' === Actors / Participants
+actor "User" as user
+participant "ProductCatalogue\n:MainMenu" as menu <<form>>
+participant "ProductEditor\n:AddProuductForm" as addProduct <<form>>
+participant "dataStore\n:ProductCollectionsDAO" as dataStore <<data store>>
+participant "product\n:Product" as product <<domain>>
+
+' === Messages ===
+user -> menu : click "Add a New Product"
+menu++
+menu -> addProduct : ProductEditor()
+addProduct++
+
+addProduct -> dataStore : getCategories()
+dataStore++
+return categories 
+
+user -> addProduct : enter Product ID
+user -> addProduct : enter Product Name
+user -> addProduct : enter Product Description
+user -> addProduct : select Product Category
+user -> addProduct : enter Product List Price
+user -> addProduct : enter Quantity in Stock
+
+user -> addProduct : click "Save"
+create product
+addProduct -> product : <<construct from data>>
+
+addProduct -> dataStore : saveProduct(product)
+dataStore++
+dataStore--
+
+addProduct --> menu
+destroy addProduct
+@enduml
