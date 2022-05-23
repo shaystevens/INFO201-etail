@@ -1,0 +1,47 @@
+@startuml find products with id
+' === Style Tweaks ===
+
+skinparam {
+  Style StrictUML
+  RoundCorner 5
+  ParticipantPadding 10
+  Padding 2
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+' === Actors / Participants
+actor "User" as user
+participant "ProductCatalogue\n:MainMenu" as menu <<form>>
+participant "ProductViewer\n:ViewProuductForm" as viewProduct <<form>>
+participant "dataStore\n:ProductCollectionsDAO" as dataStore <<data store>>
+
+' === Messages ===
+user -> menu : click "View Products"
+menu++
+menu -> viewProduct : ProductViewer()
+viewProduct++
+
+viewProduct -> dataStore : getProducts()
+dataStore++
+return products
+viewProduct -> viewProduct : updateItems(products)
+
+user -> viewProduct : enter Product ID
+user -> viewProduct : click "Search"
+
+viewProduct -> dataStore : searchById(productIdTxtBox.getText())
+dataStore++
+return searchedProduct
+viewProduct -> viewProduct : updateItems(seachedProduct)
+
+user -> viewProduct : click "Close"
+viewProduct --> menu
+destroy viewProduct
+
+@enduml
+
