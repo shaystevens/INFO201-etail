@@ -31,6 +31,8 @@ addProduct -> dataStore : getCategories()
 dataStore++
 return categories 
 
+addProduct -> addProduct : updateItems(categories)
+
 user -> addProduct : enter Product ID
 user -> addProduct : enter Product Name
 user -> addProduct : enter Product Description
