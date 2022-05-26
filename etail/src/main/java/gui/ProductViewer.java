@@ -162,7 +162,7 @@ public class ProductViewer extends javax.swing.JDialog {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-        if(!productList.isSelectionEmpty()){
+        if(productList.getSelectedValue() != null){
             int result = optionPane.showConfirmDialog(this, "Are you sure you want to delete product " + productList.getSelectedValue() + "?", "Delete Item", optionPane.YES_NO_OPTION);
 
             if (result == optionPane.YES_OPTION) {
