@@ -153,6 +153,13 @@ public class ProductViewer extends javax.swing.JDialog {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
+        if(productList.getSelectedValue() != null){
+            //Create new menu so new productEditor can be attached to a JFrame
+            Product productToEdit = (Product)productList.getSelectedValue();
+            ProductEditor productEditor = new ProductEditor(productToEdit);
+            productEditor.setVisible(true);
+            productsModel.updateItems(products);
+        }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed

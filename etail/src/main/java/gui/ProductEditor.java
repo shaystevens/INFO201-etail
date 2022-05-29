@@ -16,6 +16,7 @@ import java.util.Collection;
  */
 public class ProductEditor extends javax.swing.JDialog {
     private ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
+    private Product product;
 
     /**
      * Creates new form ProductEditor
@@ -24,6 +25,22 @@ public class ProductEditor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         boxCategory.setEditable(true);
+        product = new Product();
+    }
+    
+    public ProductEditor(Product productEdit){
+        initComponents();
+        boxCategory.setEditable(true);
+        this.setModal (true);
+        this.setAlwaysOnTop (true);
+        product = productEdit;
+        //this.setLocationRelativeTo(this.rootPane);
+        this.txtId.setText(productEdit.getProductID());
+        this.txtName.setText(productEdit.getName());
+        this.txtDescription.setText(productEdit.getDescription());
+        this.boxCategory.getModel().setSelectedItem(productEdit.getCategory());
+        this.txtPrice.setText(productEdit.getListPrice().toString());
+        this.txtQuantity.setText(productEdit.getQuantityInStock().toString());
     }
 
     /**
@@ -208,15 +225,14 @@ public class ProductEditor extends javax.swing.JDialog {
         
         BigDecimal priceBigDecimal = new BigDecimal(price);
         BigDecimal quantityBigDecimal = new BigDecimal(quantity);
-        
-        Product product = new Product();
+       
         product.setProductID(id);
         product.setName(name);
         product.setDescription(description);
         product.setCategory(category);
         product.setListPrice(priceBigDecimal);
         product.setQuantityInStock(quantityBigDecimal);
-        
+            
         productDAO.saveProduct(product);
         dispose();
         
@@ -286,7 +302,7 @@ public class ProductEditor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDescription;
-    private javax.swing.JTextField txtId;
+    javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
