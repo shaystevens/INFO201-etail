@@ -9,6 +9,7 @@ import domain.Product;
 import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,6 +53,7 @@ public class ProductEditor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -216,26 +218,29 @@ public class ProductEditor extends javax.swing.JDialog {
     }//GEN-LAST:event_boxCategoryActionPerformed
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        String id = txtId.getText();
-        String name = txtName.getText();
-        String description = txtDescription.getText();
-        String category = (String) boxCategory.getSelectedItem();
-        String price = txtPrice.getText();
-        String quantity = txtQuantity.getText();
+        try{
+            String id = txtId.getText();
+            String name = txtName.getText();
+            String description = txtDescription.getText();
+            String category = (String) boxCategory.getSelectedItem();
+            String price = txtPrice.getText();
+            String quantity = txtQuantity.getText();
         
-        BigDecimal priceBigDecimal = new BigDecimal(price);
-        BigDecimal quantityBigDecimal = new BigDecimal(quantity);
-       
-        product.setProductID(id);
-        product.setName(name);
-        product.setDescription(description);
-        product.setCategory(category);
-        product.setListPrice(priceBigDecimal);
-        product.setQuantityInStock(quantityBigDecimal);
+            BigDecimal priceBigDecimal = new BigDecimal(price);
+            BigDecimal quantityBigDecimal = new BigDecimal(quantity);
+        
+            product.setProductID(id);
+            product.setName(name);
+            product.setDescription(description);
+            product.setCategory(category);
+            product.setListPrice(priceBigDecimal);
+            product.setQuantityInStock(quantityBigDecimal);
             
-        productDAO.saveProduct(product);
-        dispose();
-        
+            productDAO.saveProduct(product);
+            dispose();
+        }catch(Exception e){
+            jOptionPane1.showMessageDialog(this, "Fields can not be blank.", "Error!", jOptionPane1.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
@@ -300,9 +305,10 @@ public class ProductEditor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDescription;
-    javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
