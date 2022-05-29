@@ -95,6 +95,9 @@ public class MainMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_buttonExitActionPerformed
 
+    /*
+    * Load add product form
+    */
     private void buttonAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddProductActionPerformed
         // When button is clicked load ProductEditor dialog
         ProductEditor productEditor = new ProductEditor(this, true);
@@ -102,6 +105,9 @@ public class MainMenu extends javax.swing.JFrame {
         productEditor.setVisible(true);
     }//GEN-LAST:event_buttonAddProductActionPerformed
 
+    /*
+    * Load View product form
+    */
     private void buttonViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonViewProductActionPerformed
         //When button is clicked load ProductViewer dialog
         ProductViewer productViewer = new ProductViewer(this, true);

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
  * @author shaystevens
  */
 public class SaleItem {
+    //Data fields
     private BigDecimal quantityPurchased;
     private BigDecimal salePrice;
     private Product product;
@@ -23,7 +24,11 @@ public class SaleItem {
         this.product = product;
     }
     
+    /*
+    * Get the item total
+    */
     public BigDecimal getItemTotal(){
+        //multiply item price by number of items and return the result
         BigDecimal total = salePrice.multiply(quantityPurchased);
         return total;
     }

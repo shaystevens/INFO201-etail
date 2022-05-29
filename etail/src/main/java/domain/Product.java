@@ -11,6 +11,7 @@ import java.math.BigDecimal;
  * @author shaystevens
  */
 public class Product {
+    //Data fields
     private String productID;
     private String name;
     private String description;
@@ -66,6 +67,9 @@ public class Product {
         this.quantityInStock = quantityInStock;
     }
     
+    /*
+    * To string method for product
+    */
     public String toString(){
         return "" + productID + ", " + name;
     }

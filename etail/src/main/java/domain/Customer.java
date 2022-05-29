@@ -9,6 +9,7 @@ package domain;
  * @author shaystevens
  */
 public class Customer {
+    //Data fields
     private Integer customerId;
     private String username;
     private String firstName;

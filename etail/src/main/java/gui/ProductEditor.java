@@ -9,15 +9,18 @@ import domain.Product;
 import helpers.SimpleListModel;
 import java.math.BigDecimal;
 import java.util.Collection;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author shaystevens
  */
 public class ProductEditor extends javax.swing.JDialog {
+    //DAO collection
     private ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
+    //product datafield
     private Product product;
+    //Editing data field
+    private boolean editing;
 
     /**
      * Creates new form ProductEditor
@@ -26,16 +29,27 @@ public class ProductEditor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         boxCategory.setEditable(true);
+        //Initialize product data field
         product = new Product();
+        editing = false;
     }
     
+    /**
+     * Creates new form ProductEditor and reuses product
+     * @param productEdit - The product that is being edited
+     */
     public ProductEditor(Product productEdit){
         initComponents();
         boxCategory.setEditable(true);
+        //Use this so the form is in front of previous
         this.setModal (true);
         this.setAlwaysOnTop (true);
+        
+        //Set product data field to product parameter
         product = productEdit;
-        //this.setLocationRelativeTo(this.rootPane);
+        editing = true;
+        
+        //set form text fields to parameters values
         this.txtId.setText(productEdit.getProductID());
         this.txtName.setText(productEdit.getName());
         this.txtDescription.setText(productEdit.getDescription());
@@ -217,18 +231,24 @@ public class ProductEditor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxCategoryActionPerformed
 
+    /*
+    * Save button is clicked
+    */
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         try{
+            //Get values from text boxes
             String id = txtId.getText();
             String name = txtName.getText();
             String description = txtDescription.getText();
             String category = (String) boxCategory.getSelectedItem();
             String price = txtPrice.getText();
             String quantity = txtQuantity.getText();
-        
+            
+            //Change strings to BigDecimal
             BigDecimal priceBigDecimal = new BigDecimal(price);
             BigDecimal quantityBigDecimal = new BigDecimal(quantity);
-        
+            
+            //set product data field values
             product.setProductID(id);
             product.setName(name);
             product.setDescription(description);
@@ -236,15 +256,26 @@ public class ProductEditor extends javax.swing.JDialog {
             product.setListPrice(priceBigDecimal);
             product.setQuantityInStock(quantityBigDecimal);
             
-            productDAO.saveProduct(product);
-            dispose();
+            //Product id must be unique
+            if(productDAO.searchById(id) != null && !editing){
+                //Display warning message
+                jOptionPane1.showMessageDialog(this, "Product Id must be unique.", "Id is taken!", jOptionPane1.WARNING_MESSAGE);
+            }else{
+                //Save product and dispose form
+                productDAO.saveProduct(product);
+                dispose();
+            }
         }catch(Exception e){
+            //Display error message
             jOptionPane1.showMessageDialog(this, "Fields can not be blank.", "Error!", jOptionPane1.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
+    /*
+    * Cancel button is clicked
+    */
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        // TODO add your handling code here:
+        //Close form when cancel button is clicked
         dispose();
     }//GEN-LAST:event_buttonCancelActionPerformed
 

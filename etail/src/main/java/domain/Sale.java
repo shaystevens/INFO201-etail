@@ -14,16 +14,25 @@ import java.util.Collection;
  * @author shaystevens
  */
 public class Sale {
+    //Data fields
     private Integer saleId;
     private LocalDateTime date;
     private String status;
     private Customer customer;
     private ArrayList<SaleItem> items;
     
+    /*
+    * Get total of sale items
+    */
     public BigDecimal getTotal(){
+        //Set total to 0
         BigDecimal total = new BigDecimal(0);
+        
+        //Loop through sale items ArrayList
         for(int x=0; x < items.size(); x++){
+            //Get sale items item total
             BigDecimal itemTotal = items.get(x).getItemTotal();
+            //Add sale item total to total
             total.add(itemTotal);
         }
         return total;

@@ -3,12 +3,16 @@
  */
 package etail;
 
+import gui.MainMenu;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        MainMenu menu = new MainMenu();
+        menu.setVisible(true);
+        //System.out.println(new App().getGreeting());
     }
 }

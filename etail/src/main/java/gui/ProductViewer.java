@@ -14,6 +14,7 @@ import java.util.Collection;
  * @author shaystevens
  */
 public class ProductViewer extends javax.swing.JDialog {
+    //Data fields
     ProductCollectionsDAO productDAO = new ProductCollectionsDAO();
     SimpleListModel productsModel = new SimpleListModel();
     SimpleListModel categoryModel = new SimpleListModel();
@@ -151,27 +152,42 @@ public class ProductViewer extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_IDSearchTxtBoxActionPerformed
 
+    /*
+    * Edit button is cliked
+    */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+        //A product must be selected
         if(productList.getSelectedValue() != null){
+            //Get selected product
             Product productToEdit = (Product)productList.getSelectedValue();
+            //Start product editor to edit product
             ProductEditor productEditor = new ProductEditor(productToEdit);
             productEditor.setVisible(true);
+            //Update products
             productsModel.updateItems(products);
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
+    /*
+    * Close button is clicked
+    */
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-        // TODO add your handling code here:
+        //close form
         dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    /*
+    * Delete button is clicked
+    */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        //A product must be selected
         if(productList.getSelectedValue() != null){
+            //Ask user if they are sure about deleting product
             int result = optionPane.showConfirmDialog(this, "Are you sure you want to delete product " + productList.getSelectedValue() + "?", "Delete Item", optionPane.YES_NO_OPTION);
-
+            
+            //If yes
             if (result == optionPane.YES_OPTION) {
+                //Get product, remove product from DAO, then update items
                 Product productToDelete = (Product)productList.getSelectedValue();
                 productDAO.removeProduct(productToDelete);
                 productsModel.updateItems(products);
@@ -179,9 +195,14 @@ public class ProductViewer extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    /*
+    * Search button is clicked
+    */
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
-        // TODO add your handling code here:
+        //Get id text value
         String id = IDSearchTxtBox.getText();
+        
+        //Search for product in DAO and update items
         Product searchedProduct = productDAO.searchById(id);
         productsModel.updateItems(searchedProduct);
     }//GEN-LAST:event_SearchButtonActionPerformed
